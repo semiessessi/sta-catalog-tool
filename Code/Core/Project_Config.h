@@ -6,10 +6,12 @@
 #include "Core/Parameter.h"
 
 #include <string>
+#include <vector>
 
 // forward declare handlers
 namespace SCT
 {
+int BC5(const SCL::ParameterInstance&, const std::string&);
 int Verbose(const SCL::ParameterInstance&, const std::string&);
 }
 
@@ -19,6 +21,9 @@ extern bool kbSCLDisplayTitle;// = false;
 static const SCL::Parameter kSCLParameters[] =
 {
 	{ "v", false, SCT::Verbose },
+	{ "bc5", true, SCT::BC5 }
 };
+
+inline int Project_EntryPoint(const std::vector<SCL::ParameterInstance>&) { return 0; }
 
 #endif
