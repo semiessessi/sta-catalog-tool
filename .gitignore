@@ -1,0 +1,7 @@
+.vs
+Workspace/Debug
+Workspace/x64
+Workspace/scl-test
+*.user
+*.lib
+*.pdb

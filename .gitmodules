@@ -1,0 +1,3 @@
+[submodule "scl"]
+	path = scl
+	url = git@github.com:semiessessi/scl.git
