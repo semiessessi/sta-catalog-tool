@@ -148,6 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Code\Core\EntryPoint.cpp" />
+    <ClCompile Include="..\Code\Handlers\Verbose.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\scl\Workspace\scl.vcxproj">

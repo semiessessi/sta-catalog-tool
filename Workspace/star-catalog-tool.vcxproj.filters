@@ -7,10 +7,16 @@
     <Filter Include="Code\Core">
       <UniqueIdentifier>{fd793b85-c940-4bb6-8077-636bc6fdd177}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Code\Handlers">
+      <UniqueIdentifier>{be2d5a24-3f78-44b0-bc75-a721799e7ad3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Code\Core\EntryPoint.cpp">
       <Filter>Code\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Handlers\Verbose.cpp">
+      <Filter>Code\Handlers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
