@@ -10,6 +10,9 @@
     <Filter Include="Code\Handlers">
       <UniqueIdentifier>{be2d5a24-3f78-44b0-bc75-a721799e7ad3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Data">
+      <UniqueIdentifier>{9c14dd48-02b7-4d2a-90e1-73fba2de0ca4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Code\Core\EntryPoint.cpp">
@@ -18,10 +21,21 @@
     <ClCompile Include="..\Code\Handlers\Verbose.cpp">
       <Filter>Code\Handlers</Filter>
     </ClCompile>
+    <ClCompile Include="..\Code\Handlers\BC5.cpp">
+      <Filter>Code\Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Core\Project_EntryPoint.cpp">
+      <Filter>Code\Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Code\Core\Project_Config.h">
       <Filter>Code\Core</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Data\bc5v50.dat">
+      <Filter>Data</Filter>
+    </None>
   </ItemGroup>
 </Project>

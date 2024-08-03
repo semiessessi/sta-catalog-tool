@@ -24,6 +24,6 @@ static const SCL::Parameter kSCLParameters[] =
 	{ "bc5", true, SCT::BC5 }
 };
 
-inline int Project_EntryPoint(const std::vector<SCL::ParameterInstance>&) { return 0; }
+int Project_EntryPoint(const std::vector<SCL::ParameterInstance>&);
 
 #endif
