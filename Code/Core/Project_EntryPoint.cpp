@@ -5,6 +5,7 @@
 namespace SCT
 {
 int ReadBC5Data(const std::string& path);
+void FindPotentialDecans();
 }
 
 int Project_EntryPoint(const std::vector<SCL::ParameterInstance>& parameters)
@@ -24,6 +25,10 @@ int Project_EntryPoint(const std::vector<SCL::ParameterInstance>& parameters)
 			{
 				worstWarning = returnValue;
 			}
+		}
+		else if (parameters[i].parameter.name == "decans")
+		{
+			SCT::FindPotentialDecans();
 		}
 	}
 

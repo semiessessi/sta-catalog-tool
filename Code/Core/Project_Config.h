@@ -21,7 +21,10 @@ extern bool kbSCLDisplayTitle;// = false;
 static const SCL::Parameter kSCLParameters[] =
 {
 	{ "v", false, SCT::Verbose },
-	{ "bc5", true, SCT::BC5 }
+	{ "verbose", false, SCT::Verbose },
+	{ "bc5", true, SCT::BC5 },
+	{ "decans" },
+	{ "test" },
 };
 
 int Project_EntryPoint(const std::vector<SCL::ParameterInstance>&);

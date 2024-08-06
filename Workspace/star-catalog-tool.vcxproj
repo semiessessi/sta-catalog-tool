@@ -77,12 +77,15 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <CopyLocalDeploymentContent>true</CopyLocalDeploymentContent>
+    <IncludePath>../Code;../scl/Code;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <CopyLocalDeploymentContent>true</CopyLocalDeploymentContent>
+    <IncludePath>../Code;../scl/Code;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <CopyLocalDeploymentContent>true</CopyLocalDeploymentContent>
+    <IncludePath>../Code;../scl/Code;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -90,6 +93,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -108,6 +113,10 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <Optimization>Full</Optimization>
+      <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -126,6 +135,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -144,6 +155,10 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <Optimization>Full</Optimization>
+      <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -157,10 +172,15 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\Code\Catalog\Catalog.cpp" />
+    <ClCompile Include="..\Code\Coordinates\Declination.cpp" />
+    <ClCompile Include="..\Code\Coordinates\RightAscension.cpp" />
     <ClCompile Include="..\Code\Core\EntryPoint.cpp" />
     <ClCompile Include="..\Code\Core\Project_EntryPoint.cpp" />
     <ClCompile Include="..\Code\Handlers\BC5.cpp" />
+    <ClCompile Include="..\Code\Handlers\Decans.cpp" />
     <ClCompile Include="..\Code\Handlers\Verbose.cpp" />
+    <ClCompile Include="..\Code\Star\Star.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\scl\Workspace\scl.vcxproj">
@@ -168,7 +188,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Code\Catalog\Catalog.h" />
+    <ClInclude Include="..\Code\Coordinates\Declination.h" />
+    <ClInclude Include="..\Code\Coordinates\RightAscension.h" />
     <ClInclude Include="..\Code\Core\Project_Config.h" />
+    <ClInclude Include="..\Code\Maths\Maths.h" />
+    <ClInclude Include="..\Code\Star\Star.h" />
+    <ClInclude Include="..\Code\Star\StarCatalog.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Data\bc5v50.dat">

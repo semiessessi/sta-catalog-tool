@@ -13,6 +13,18 @@
     <Filter Include="Data">
       <UniqueIdentifier>{9c14dd48-02b7-4d2a-90e1-73fba2de0ca4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Code\Star">
+      <UniqueIdentifier>{f3c83667-8497-4720-a144-2f6285b835e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Catalog">
+      <UniqueIdentifier>{1d5d48c0-7b53-4a8a-8e7e-175c5a5ece0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Coordinates">
+      <UniqueIdentifier>{d3cbf185-a7d4-4f48-a8ca-09c5c6599c23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Maths">
+      <UniqueIdentifier>{ed3eafbe-7ba9-4a1d-bf8a-34e2c564eb19}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Code\Core\EntryPoint.cpp">
@@ -27,10 +39,43 @@
     <ClCompile Include="..\Code\Core\Project_EntryPoint.cpp">
       <Filter>Code\Core</Filter>
     </ClCompile>
+    <ClCompile Include="..\Code\Catalog\Catalog.cpp">
+      <Filter>Code\Catalog</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Star\Star.cpp">
+      <Filter>Code\Star</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Coordinates\RightAscension.cpp">
+      <Filter>Code\Coordinates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Coordinates\Declination.cpp">
+      <Filter>Code\Coordinates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Handlers\Decans.cpp">
+      <Filter>Code\Handlers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Code\Core\Project_Config.h">
       <Filter>Code\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Star\Star.h">
+      <Filter>Code\Star</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Star\StarCatalog.h">
+      <Filter>Code\Star</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Catalog\Catalog.h">
+      <Filter>Code\Catalog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Coordinates\RightAscension.h">
+      <Filter>Code\Coordinates</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Coordinates\Declination.h">
+      <Filter>Code\Coordinates</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Maths\Maths.h">
+      <Filter>Code\Maths</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
