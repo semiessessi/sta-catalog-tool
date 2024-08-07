@@ -14,12 +14,12 @@
 namespace SCT
 {
 
-class Star
+class StarSystem
 {
 public:
 
-	Star(const StarCatalog catalog);
-	Star(const StarCatalog catalog, const uint64_t sourceCatalogIndex);
+	StarSystem(const StarCatalog catalog);
+	StarSystem(const StarCatalog catalog, const uint64_t sourceCatalogIndex);
 
 	void SetHR(const int hr) { m_HR = hr; }
 	void SetHD(const int hd) { m_HD = hd; }

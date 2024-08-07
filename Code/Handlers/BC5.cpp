@@ -17,7 +17,7 @@ void ProcessBC5Line(const std::string& line)
 
 	// first few characters are the index
 	const int index = std::stoi(line.substr(0, 4));
-	Star star(StarCatalog::YALE_BRIGHT_STAR_CATALOG_5_V_50, index);
+	StarSystem star(StarCatalog::YALE_BRIGHT_STAR_CATALOG_5_V_50, index);
 
 	// name 5-14
 	const std::string name = line.substr(4, 10);

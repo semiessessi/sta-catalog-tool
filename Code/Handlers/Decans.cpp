@@ -9,12 +9,12 @@ namespace SCT
 {
 
 // TODO: refactor this out of here..
-double ToJulianCenturiesSinceJ2000(const double julianDay)
+inline double ToJulianCenturiesSinceJ2000(const double julianDay)
 {
 	return (julianDay - 2451545.0) / 36525;
 }
 
-double GetGMSTSeconds(const double julianDay)
+inline double GetGMSTSeconds(const double julianDay)
 {
 	// convert Julian Day to centuries since J2000.0
 	const double t = ToJulianCenturiesSinceJ2000(julianDay);
@@ -383,11 +383,11 @@ double CalculateNextSunset(
 void FindPotentialDecans()
 {
 	std::vector<int> daysDown;
-	std::vector<SCT::Star> potentials;
-	std::vector<SCT::Star> close;
+	std::vector<SCT::StarSystem> potentials;
+	std::vector<SCT::StarSystem> close;
 	std::vector<int> closeRiseDays;
 	std::vector<int> potentialRiseDays;
-	Catalog::ForEachStar([&](SCT::Star& star)
+	Catalog::ForEachStar([&](SCT::StarSystem& star)
 	{
 		static const double kTestLatitude = 29.9792;
 		static const double kTestLongitude = -31.1342;
@@ -442,21 +442,21 @@ void FindPotentialDecans()
 
 		if (star.GetHR() == 2491)
 		{
-			printf("Sopdet (2491): %d, %d\n", 365 - count, riseDay);
+			printf("\rSopdet (2491): %d, %d\n", 365 - count, riseDay);
 		}
 		else if (star.GetHR() == 2943)
 		{
-			printf("Procyon (2943): %d, %d\n", 365 - count, riseDay);
+			printf("\rProcyon (2943): %d, %d\n", 365 - count, riseDay);
 		}
 
 		if ((daysDown.size() & 31) == 0)
 		{
-			printf("%d / %d\n", (int)(daysDown.size()), (int)(Catalog::Count()));
+			printf("\r%d / %d", (int)(daysDown.size()), (int)(Catalog::Count()));
 		}
 
 		daysDown.push_back(365 - count);
-		if (((365 - count) > 115)
-			&& ((365 - count) < 235))
+		if (((365 - count) > 70)
+			&& ((365 - count) < 245))
 		{
 			//printf("Found potential HR %d\n", star.GetHR());
 			int testDay = 10;
@@ -482,7 +482,7 @@ void FindPotentialDecans()
 		}
 	});
 
-	printf("Potential decan stars: %d\n", (int)potentials.size());
+	printf("\rPotential decan stars: %d\n", (int)potentials.size());
 	printf("Potential close geometric matches: %d\n", (int)close.size());
 
 	int potentialAboveMag3 = 0;

@@ -3,7 +3,7 @@
 namespace SCT
 {
 
-Star::Star(StarCatalog catalog)
+StarSystem::StarSystem(StarCatalog catalog)
 : m_RA(0)
 , m_Dec(0)
 , m_Hip(0)
@@ -13,7 +13,7 @@ Star::Star(StarCatalog catalog)
 {
 }
 
-Star::Star(
+StarSystem::StarSystem(
 	const StarCatalog catalog,
 	const uint64_t sourceCatalogIndex)
 : m_RA(0)
@@ -27,17 +27,17 @@ Star::Star(
 {
 }
 
-void Star::SetRA(const int hours, const int minutes, const double seconds)
+void StarSystem::SetRA(const int hours, const int minutes, const double seconds)
 {
 	m_RA = RightAscension(hours, minutes, seconds);
 }
 
-void Star::SetDeclination(const int degrees, const int minutes, const double seconds)
+void StarSystem::SetDeclination(const int degrees, const int minutes, const double seconds)
 {
 	m_Dec = Declination(degrees, minutes, seconds);
 }
 
-std::string Star::GetNameString() const
+std::string StarSystem::GetNameString() const
 {
 	return m_crappyNameString;
 }
