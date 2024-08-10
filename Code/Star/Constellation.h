@@ -103,6 +103,7 @@ enum Constellation : unsigned int
 };
 
 std::string GetConstellationName(const Constellation constellation);
+std::string GetConstellationGenitive(const Constellation constellation);
 Constellation GetConstellationFromAbbreviation(const std::string& abbreviation);
 
 }

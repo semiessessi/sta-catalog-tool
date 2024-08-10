@@ -109,6 +109,11 @@ std::string GetConstellationName(const Constellation constellation)
 	return kConstellationData[constellation].name;
 }
 
+std::string GetConstellationGenitive(const Constellation constellation)
+{
+	return kConstellationData[constellation].genitive;
+}
+
 Constellation GetConstellationFromAbbreviation(const std::string& abbreviation)
 {
 	for (int i = 0; i < 89; ++i)

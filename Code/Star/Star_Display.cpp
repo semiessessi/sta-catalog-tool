@@ -5,7 +5,7 @@
 namespace SCT
 {
 
-std::string ComponentStar::ToDisplayTableRow(const double ra, const double dec) const
+std::string ComponentStar::ToDisplayTableRow(const double ra, const double dec, const Constellation constellation) const
 {
 	std::string returnValue;
 	std::string HR = std::to_string(m_HR);
@@ -76,14 +76,57 @@ std::string ComponentStar::ToDisplayTableRow(const double ra, const double dec) 
 	}
 	returnValue += decString;
 
+	std::string name = GetDisplayName(constellation);
+	returnValue += name;
 	return returnValue;
+}
+
+std::string ComponentStar::GetDisplayName(const Constellation constellation) const
+{
+	if (constellation != Unknown)
+	{
+		if (GetBayer() != None)
+		{
+			if (GetBayerIndex() != 0)
+			{
+				return NameFromBayer(GetBayer()) + "-" + std::to_string(GetBayerIndex()) + " " + GetConstellationGenitive(constellation);
+			}
+			return NameFromBayer(GetBayer()) + " " + GetConstellationGenitive(constellation);
+		}
+		else if (GetFlamsteed() != 0)
+		{
+			return std::to_string(GetFlamsteed()) + " " + GetConstellationGenitive(constellation);
+		}
+	}
+
+	if (GetHR() != 0)
+	{
+		return std::string("HR ") + std::to_string(GetHR());
+	}
+
+	if (GetHD() != 0)
+	{
+		return std::string("HD ") + std::to_string(GetHD());
+	}
+
+	if (GetSAO() != 0)
+	{
+		return std::string("SAO ") + std::to_string(GetSAO());
+	}
+
+	if (GetHip() != 0)
+	{
+		return std::string("HIP ") + std::to_string(GetHip());
+	}
+
+	return "(unknown star)";
 }
 
 std::string StarSystem::DisplayTableHeader()
 {
 	std::string returnValue;
-	returnValue += " HR     HD    SAO    Hip   Vmag SC   RA (deg)  Dec (deg)\n";
-	returnValue += "------------------------------------------------------------------";
+	returnValue += " HR     HD    SAO    Hip   Vmag SC   RA (deg)  Dec (deg)  Name\n";
+	returnValue += "--------------------------------------------------------------------------";
 	return returnValue;
 }
 
@@ -92,7 +135,7 @@ std::string StarSystem::ToDisplayTableRows() const
 	std::string returnValue;
 	for (size_t i = 0; i < m_components.size(); ++i)
 	{
-		returnValue += m_components[0].ToDisplayTableRow(m_RA.ToDegrees(), m_Dec.ToDegrees());
+		returnValue += m_components[0].ToDisplayTableRow(m_RA.ToDegrees(), m_Dec.ToDegrees(), m_constellation);
 		returnValue += "\n";
 	}
 	return returnValue;

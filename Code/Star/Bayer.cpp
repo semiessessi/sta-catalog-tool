@@ -105,4 +105,37 @@ std::pair<BayerGreekLetter, unsigned char> ParseBayerFromName(const std::string&
 	return std::make_pair(greekLetter, index);
 }
 
+std::string NameFromBayer(const BayerGreekLetter letter)
+{
+	switch (letter)
+	{
+		default:
+		case None:		return " ";
+		case Alpha:     return "Alpha";
+		case Beta:		return "Beta";
+		case Gamma:     return "Gamma";
+		case Delta:     return "Delta";
+		case Epsilon:   return "Epsilon";
+		case Zeta:		return "Zeta";
+		case Eta:		return "Eta";
+		case Theta:     return "Theta";
+		case Iota:		return "Iota";
+		case Kappa:     return "Kappa";
+		case Lambda:    return "Lambda";
+		case Mu:		return "Mu";
+		case Nu:		return "Nu";
+		case Xi:		return "Xi";
+		case Omicron:   return "Omicron";
+		case Pi:		return "Pi";
+		case Rho:		return "Rho";
+		case Sigma:     return "Sigma";
+		case Tau:		return "Tau";
+		case Upsilon:   return "Upsilon";
+		case Phi:		return "Phi";
+		case Chi:		return "Chi";
+		case Psi:		return "Psi";
+		case Omega:     return "Omega";
+	}
+}
+
 }

@@ -48,6 +48,7 @@ enum BayerGreekLetter : unsigned char
 };
 
 std::pair<BayerGreekLetter, unsigned char> ParseBayerFromName(const std::string& name);
+std::string NameFromBayer(const BayerGreekLetter letter);
 
 class StarSystem;
 
@@ -93,7 +94,8 @@ public:
 
 	StarCatalog GetCatalog() const { return m_catalog; }
 
-	std::string ToDisplayTableRow(const double ra, const double dec) const;
+	std::string ToDisplayTableRow(const double ra, const double dec, const Constellation constellation) const;
+	std::string GetDisplayName(const Constellation constellation) const;
 
 private:
 
