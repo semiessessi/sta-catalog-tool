@@ -101,10 +101,19 @@ int DoTests()
 	int i = 0;
 	Catalog::ForEachStar([&](SCT::StarSystem starSystem)
 		{
-			if (i > 3000)
+			if (i > 30000)
 			{
 				if (((i % 61337) != 0)
 					&& ((i % 27111) != 0))
+				{
+					++i;
+					return;
+				}
+			}
+			else if (i > 3000)
+			{
+				if (((i % 6311) != 0)
+					&& ((i % 2197) != 0))
 				{
 					++i;
 					return;

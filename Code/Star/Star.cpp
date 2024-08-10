@@ -5,7 +5,7 @@
 namespace SCT
 {
 
-	std::pair<BayerGreekLetter, unsigned char> ParseBayerFromName(const std::string& name);
+std::pair<BayerGreekLetter, unsigned char> ParseBayerFromName(const std::string& name);
 
 ComponentStar ComponentStar::FromCatalog(const StarCatalog source)
 {
@@ -29,6 +29,21 @@ void ComponentStar::Merge(const StarSystem& system)
 	if (GetHip() == 0)
 	{
 		SetHip(system.GetHip());
+	}
+
+	if (GetSAO() == 0)
+	{
+		SetSAO(system.GetSAO());
+	}
+
+	if (GetFK5() == 0)
+	{
+		SetSAO(system.GetFK5());
+	}
+
+	if (GetADS() == 0)
+	{
+		SetADS(system.GetADS());
 	}
 
 	if (GetFlamsteed() == 0)
@@ -69,6 +84,12 @@ void ComponentStar::Merge(const StarSystem& system)
 		{
 			m_visualMagnitude = system.GetVisualMagnitude();
 		}
+
+		if (system.GetSpectralClass() != SpectralClass::Empty)
+		{
+			m_spectralClass = system.GetSpectralClass();
+		}
+
 		m_catalog = system.GetCatalog();
 	}
 }

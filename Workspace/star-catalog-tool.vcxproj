@@ -208,7 +208,7 @@
     <ClCompile Include="..\Code\Handlers\Test.cpp" />
     <ClCompile Include="..\Code\Handlers\Verbose.cpp" />
     <ClCompile Include="..\Code\Star\Bayer.cpp" />
-    <ClCompile Include="..\Code\Star\Constellaltion.cpp" />
+    <ClCompile Include="..\Code\Star\Constellation.cpp" />
     <ClCompile Include="..\Code\Star\Durchmusterung.cpp" />
     <ClCompile Include="..\Code\Star\SpectralClass.cpp" />
     <ClCompile Include="..\Code\Star\Star.cpp" />

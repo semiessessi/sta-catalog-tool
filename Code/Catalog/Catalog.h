@@ -24,10 +24,12 @@ public:
 	static void ForEachStar(std::function<void(StarSystem&)> eachFunction);
 
 	static size_t Count() { return s_starEntries.size(); }
-
+	static const StarSystem& GetStarSystem(const size_t index) { return s_starEntries[index]; }
 	static void Report();
 
 private:
+
+	static void RecreateLookups();
 
 	static std::vector<StarSystem> s_starEntries;
 	static std::unordered_map<int, size_t> s_hrMap;

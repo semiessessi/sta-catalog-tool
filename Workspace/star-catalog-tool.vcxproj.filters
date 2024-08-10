@@ -84,7 +84,7 @@
     <ClCompile Include="..\Code\Star\Star_Display.cpp">
       <Filter>Code\Star</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\Star\Constellaltion.cpp">
+    <ClCompile Include="..\Code\Star\Constellation.cpp">
       <Filter>Code\Star</Filter>
     </ClCompile>
   </ItemGroup>

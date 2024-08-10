@@ -175,6 +175,11 @@ public:
 
 	bool IsMultiple() const { return m_components.size() > 1; }
 
+	int GetComponentCount() const { return (int)m_components.size(); }
+
+	const ComponentStar& GetComponent(int index) const { return m_components[index]; }
+	ComponentStar& GetComponent(int index) { return m_components[index]; }
+
 	void AccumulateNewData(const StarSystem& dataSource);
 
 	static std::string DisplayTableHeader();

@@ -18,7 +18,7 @@ RightAscension::RightAscension(
 
 double RightAscension::ToDegrees() const
 {
-	return static_cast<double>(m_hours) * (360.0 / 24.0)
+	return static_cast<double>(m_hours) * (15.0)
 		+ static_cast<double>(m_minutes) * (1.0 / 60.0)
 		+ m_seconds * (1.0 / (60.0 * 60.0));
 }

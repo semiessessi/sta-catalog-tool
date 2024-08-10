@@ -142,4 +142,65 @@ void Catalog::ForEachStar(std::function<void(StarSystem&)> eachFunction)
 	}
 }
 
+template<typename LookupType>
+void UpdateMap(
+	std::unordered_map<LookupType, size_t>& map,
+	LookupType (StarSystem::* lookup)() const,
+	LookupType (ComponentStar::* componentLookup)() const,
+	size_t index)
+{
+	const StarSystem& system = Catalog::GetStarSystem(index);
+	LookupType baseLookup = (system.*lookup)();
+	if(baseLookup != 0)
+	{
+		map[baseLookup] = index;
+		for (int i = 0; i < system.GetComponentCount(); ++i)
+		{
+			const ComponentStar& star = system.GetComponent(i);
+			const LookupType componentValue = (star.*componentLookup)();
+			if (componentValue != 0)
+			{
+				map[componentValue] = index;
+			}
+		}
+	}
+}
+
+template<>
+void UpdateMap<Durchmusterung>(
+	std::unordered_map<Durchmusterung, size_t>& map,
+	Durchmusterung (StarSystem::* lookup)() const,
+	Durchmusterung(ComponentStar::* componentLookup)() const,
+	size_t index)
+{
+	const StarSystem& system = Catalog::GetStarSystem(index);
+	Durchmusterung baseLookup = (system.*lookup)();
+	if (baseLookup != Durchmusterung::Empty)
+	{
+		map[baseLookup.GetComponentless()] = index;
+	}
+}
+
+void Catalog::RecreateLookups()
+{
+	s_hrMap.clear();
+	s_hdMap.clear();
+	s_hipMap.clear();
+	s_saoMap.clear();
+	s_fk5Map.clear();
+	s_adsMap.clear();
+	s_bdMap.clear();
+
+	for (size_t i = 0; i < s_starEntries.size(); ++i)
+	{
+		UpdateMap(s_hrMap, &StarSystem::GetHR, &ComponentStar::GetHR, i);
+		UpdateMap(s_hdMap, &StarSystem::GetHD, &ComponentStar::GetHD, i);
+		UpdateMap(s_hipMap, &StarSystem::GetHip, &ComponentStar::GetHip, i);
+		UpdateMap(s_saoMap, &StarSystem::GetSAO, &ComponentStar::GetSAO, i);
+		UpdateMap(s_fk5Map, &StarSystem::GetFK5, &ComponentStar::GetFK5, i);
+		UpdateMap(s_adsMap, &StarSystem::GetADS, &ComponentStar::GetADS, i);
+		UpdateMap(s_bdMap, &StarSystem::GetDM, &ComponentStar::GetDM, i);
+	}
+}
+
 }

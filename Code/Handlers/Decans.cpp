@@ -161,8 +161,8 @@ std::pair<double, double> CalculateAltitudeAzimuth(
 	{
 		azimuth += 2 * PI;
 	}
+
 	// SE - NOTE: we leave it in radians
-	// the parameters being in degrees are just a convenience
 	return std::make_pair(altitude, azimuth);
 }
 
@@ -210,6 +210,7 @@ std::pair<double, double> CalculateSunRaDec(const double julianDay)
 	{
 		RA += PI * 2;
 	}
+
 	// calculate the Sun's declination (Dec)
 	const double dec = asin(sin(epsilonRad) * sin(lambdaRad));
 
