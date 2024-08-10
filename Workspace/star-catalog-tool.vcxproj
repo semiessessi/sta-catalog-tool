@@ -101,6 +101,7 @@
       <ExceptionHandling>false</ExceptionHandling>
       <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
       <FloatingPointModel>Fast</FloatingPointModel>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -127,6 +128,7 @@
       <FloatingPointModel>Fast</FloatingPointModel>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <CallingConvention>FastCall</CallingConvention>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -150,6 +152,7 @@
       <ExceptionHandling>false</ExceptionHandling>
       <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
       <FloatingPointModel>Fast</FloatingPointModel>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -176,6 +179,7 @@
       <FloatingPointModel>Fast</FloatingPointModel>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <CallingConvention>FastCall</CallingConvention>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -190,14 +194,25 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Code\Catalog\Catalog.cpp" />
+    <ClCompile Include="..\Code\Catalog\Catalog_Output.cpp" />
     <ClCompile Include="..\Code\Coordinates\Declination.cpp" />
     <ClCompile Include="..\Code\Coordinates\RightAscension.cpp" />
     <ClCompile Include="..\Code\Core\EntryPoint.cpp" />
     <ClCompile Include="..\Code\Core\Project_EntryPoint.cpp" />
     <ClCompile Include="..\Code\Handlers\BC5.cpp" />
     <ClCompile Include="..\Code\Handlers\Decans.cpp" />
+    <ClCompile Include="..\Code\Handlers\HD.cpp" />
+    <ClCompile Include="..\Code\Handlers\HDEC.cpp" />
+    <ClCompile Include="..\Code\Handlers\Hipparcos.cpp" />
+    <ClCompile Include="..\Code\Handlers\SAO.cpp" />
+    <ClCompile Include="..\Code\Handlers\Test.cpp" />
     <ClCompile Include="..\Code\Handlers\Verbose.cpp" />
+    <ClCompile Include="..\Code\Star\Bayer.cpp" />
+    <ClCompile Include="..\Code\Star\Constellaltion.cpp" />
+    <ClCompile Include="..\Code\Star\Durchmusterung.cpp" />
+    <ClCompile Include="..\Code\Star\SpectralClass.cpp" />
     <ClCompile Include="..\Code\Star\Star.cpp" />
+    <ClCompile Include="..\Code\Star\Star_Display.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\scl\Workspace\scl.vcxproj">
@@ -209,12 +224,40 @@
     <ClInclude Include="..\Code\Coordinates\Declination.h" />
     <ClInclude Include="..\Code\Coordinates\RightAscension.h" />
     <ClInclude Include="..\Code\Core\Project_Config.h" />
+    <ClInclude Include="..\Code\Maths\Astronomy.h" />
     <ClInclude Include="..\Code\Maths\Maths.h" />
+    <ClInclude Include="..\Code\Star\Constellation.h" />
+    <ClInclude Include="..\Code\Star\Durchmusterung.h" />
+    <ClInclude Include="..\Code\Star\SpectralClass.h" />
     <ClInclude Include="..\Code\Star\Star.h" />
     <ClInclude Include="..\Code\Star\StarCatalog.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Data\bc5v50.dat">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</DeploymentContent>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="..\Data\hdec_catalog.dat">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</DeploymentContent>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="..\Data\hd_catalog.dat">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</DeploymentContent>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="..\Data\hip_main.dat">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</DeploymentContent>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="..\Data\sao.dat">
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</DeploymentContent>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>

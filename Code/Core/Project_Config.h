@@ -12,7 +12,12 @@
 namespace SCT
 {
 int BC5(const SCL::ParameterInstance&, const std::string&);
+int Hip(const SCL::ParameterInstance&, const std::string&);
+int HD(const SCL::ParameterInstance&, const std::string&);
+int HDEC(const SCL::ParameterInstance&, const std::string&);
+int SAO(const SCL::ParameterInstance&, const std::string&);
 int Verbose(const SCL::ParameterInstance&, const std::string&);
+int Test(const SCL::ParameterInstance&, const std::string&);
 }
 
 static const char* const kSCLTitle = "Star Catalog Tool";
@@ -22,9 +27,14 @@ static const SCL::Parameter kSCLParameters[] =
 {
 	{ "v", false, SCT::Verbose },
 	{ "verbose", false, SCT::Verbose },
+	{ "t", false, SCT::Test },
+	{ "test", false, SCT::Test },
 	{ "bc5", true, SCT::BC5 },
 	{ "decans" },
-	{ "test" },
+	{ "hip", true, SCT::Hip },
+	{ "hd", true, SCT::HD },
+	{ "hdec", true, SCT::HDEC },
+	{ "sao", true, SCT::SAO },
 };
 
 int Project_EntryPoint(const std::vector<SCL::ParameterInstance>&);

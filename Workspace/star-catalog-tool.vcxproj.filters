@@ -54,6 +54,39 @@
     <ClCompile Include="..\Code\Handlers\Decans.cpp">
       <Filter>Code\Handlers</Filter>
     </ClCompile>
+    <ClCompile Include="..\Code\Catalog\Catalog_Output.cpp">
+      <Filter>Code\Catalog</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Handlers\Hipparcos.cpp">
+      <Filter>Code\Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Handlers\HDEC.cpp">
+      <Filter>Code\Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Handlers\HD.cpp">
+      <Filter>Code\Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Handlers\SAO.cpp">
+      <Filter>Code\Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Handlers\Test.cpp">
+      <Filter>Code\Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Star\Durchmusterung.cpp">
+      <Filter>Code\Star</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Star\SpectralClass.cpp">
+      <Filter>Code\Star</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Star\Bayer.cpp">
+      <Filter>Code\Star</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Star\Star_Display.cpp">
+      <Filter>Code\Star</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Star\Constellaltion.cpp">
+      <Filter>Code\Star</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Code\Core\Project_Config.h">
@@ -77,9 +110,33 @@
     <ClInclude Include="..\Code\Maths\Maths.h">
       <Filter>Code\Maths</Filter>
     </ClInclude>
+    <ClInclude Include="..\Code\Maths\Astronomy.h">
+      <Filter>Code\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Star\Durchmusterung.h">
+      <Filter>Code\Star</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Star\SpectralClass.h">
+      <Filter>Code\Star</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Star\Constellation.h">
+      <Filter>Code\Star</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Data\bc5v50.dat">
+      <Filter>Data</Filter>
+    </None>
+    <None Include="..\Data\hip_main.dat">
+      <Filter>Data</Filter>
+    </None>
+    <None Include="..\Data\hdec_catalog.dat">
+      <Filter>Data</Filter>
+    </None>
+    <None Include="..\Data\hd_catalog.dat">
+      <Filter>Data</Filter>
+    </None>
+    <None Include="..\Data\sao.dat">
       <Filter>Data</Filter>
     </None>
   </ItemGroup>

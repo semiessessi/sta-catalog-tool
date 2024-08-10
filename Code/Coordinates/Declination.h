@@ -16,6 +16,9 @@ public:
 		const double seconds = 0.0);
 
 	double ToDegrees() const;
+	double ToRadians() const;
+
+	static Declination FromDegrees(const double degrees);
 
 private:
 

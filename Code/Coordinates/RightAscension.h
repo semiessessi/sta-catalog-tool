@@ -13,6 +13,13 @@ public:
 	RightAscension(const int hours, const int minutes = 0, const double seconds = 0.0);
 
 	double ToDegrees() const;
+	double ToRadians() const;
+
+	int Hours() const { return m_hours; }
+	int Minutes() const { return m_minutes; }
+	double Seconds() const { return m_seconds; }
+
+	static RightAscension FromDegrees(const double degrees);
 
 private:
 

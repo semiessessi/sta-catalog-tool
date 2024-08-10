@@ -1,5 +1,6 @@
 #include "Catalog/Catalog.h"
 #include "Core/Parameter.h"
+#include "Maths/Astronomy.h"
 #include "Maths/Maths.h"
 #include "Star/Star.h"
 
@@ -7,12 +8,6 @@
 
 namespace SCT
 {
-
-// TODO: refactor this out of here..
-inline double ToJulianCenturiesSinceJ2000(const double julianDay)
-{
-	return (julianDay - 2451545.0) / 36525;
-}
 
 inline double GetGMSTSeconds(const double julianDay)
 {
@@ -102,36 +97,6 @@ double SolarMeanAnomaly(const double julianDay)
 	//return 357.52910 + t * (35999.0530 + t * (-0.0001559 + t * -0.00000048));
 }
 
-std::pair<double, double> RADecToCurrentEpoch(const double julianDay, const double raJ2000, const double decJ2000)
-{
-	// TODO: https://ui.adsabs.harvard.edu/abs/2011A%26A...534A..22V/abstract
-	// this is from Meeus p 126
-	// convert Julian Day to centuries since J2000.0
-	const double  t = ToJulianCenturiesSinceJ2000(julianDay);
-
-	// note these are only valid for J2000.0, the coefficients vary for different epochs
-	const double  zeta = DegreesToRadians(
-		t * (2306.2181 + t * (0.30188 + t * 0.017998)) / 3600);
-	const double  z = DegreesToRadians(
-		t * (2306.2181 + t * (1.09468 + t * 0.018203)) / 3600);
-	const double  theta = DegreesToRadians(
-		t * (2004.3109 + t * (0.42665 + t * 0.041833)) / 3600);
-
-	const double cosDecJ2000 = cos(decJ2000);
-	const double sinDecJ2000 = sin(decJ2000);
-	const double cosAdjustedRA = cos(raJ2000 + zeta);
-	const double sinAdjustedRA = sin(raJ2000 + zeta);
-	const double cosTheta = cos(theta);
-	const double sinTheta = sin(theta);
-	const double A = cosDecJ2000 * sinAdjustedRA;
-	const double B = cosTheta * cosDecJ2000 * cosAdjustedRA - sinTheta * sinDecJ2000;
-	const double C = sinTheta * cosDecJ2000 * cosAdjustedRA + cosTheta * sinDecJ2000;
-
-	const double ra = atan2(A, B) + z;
-	const double dec = asin(C);
-	return std::make_pair(ra, dec);
-}
-
 // this produces altitude an azimuth with corrections around J2000.0
 std::pair<double, double> CalculateAltitudeAzimuth(
 	const double julianDay,
@@ -152,9 +117,8 @@ std::pair<double, double> CalculateAltitudeAzimuth(
 	const double raJ2000Rad = DegreesToRadians(raJ2000);
 	const double decJ2000Rad = DegreesToRadians(decJ2000);
 
-	// SE - TODO: fix this, we skip because we dont need that accuracy really.
 	// then precession to the current epoch...
-	const auto raDec = RADecToCurrentEpoch(julianDay, raJ2000Rad, decJ2000Rad);
+	const auto raDec = RADecJ2000ToCurrentEpochRadians(julianDay, raJ2000Rad, decJ2000Rad);
 	const double raRad = raDec.first;
 	const double decRad = raDec.second;
 
