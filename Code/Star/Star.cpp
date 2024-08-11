@@ -38,7 +38,7 @@ void ComponentStar::Merge(const StarSystem& system)
 
 	if (GetFK5() == 0)
 	{
-		SetSAO(system.GetFK5());
+		SetFK5(system.GetFK5());
 	}
 
 	if (GetADS() == 0)
@@ -157,7 +157,8 @@ void StarSystem::SetDeclination(const int degrees, const int minutes, const doub
 
 std::string StarSystem::GetNameString() const
 {
-	return m_crappyNameString;
+	// TODO: ... the system doesnt have the name of the first component
+	return m_components[0].GetDisplayName(m_constellation);// m_crappyNameString;
 }
 
 void StarSystem::AccumulateNewData(const StarSystem& dataSource)
@@ -178,7 +179,7 @@ void StarSystem::AccumulateNewData(const StarSystem& dataSource)
 			}
 		}
 	}
-	else if(dataSource.GetHD() != 0)
+	else if((match == -1) && (dataSource.GetHD() != 0)) // TODO: the components are hd components (?)
 	{
 		// TODO:...
 		for (int i = 0; i < m_components.size(); ++i)
@@ -191,13 +192,30 @@ void StarSystem::AccumulateNewData(const StarSystem& dataSource)
 			}
 		}
 	}
-	else if (dataSource.GetSAO() != 0)
+	
+	if ((match == -1) && (dataSource.GetSAO() != 0))
 	{
 		// TODO:...
 		for (int i = 0; i < m_components.size(); ++i)
 		{
 			if (dataSource.GetSAO()
 				== m_components[i].GetSAO())
+			{
+				match = i;
+				break;
+			}
+		}
+	}
+	
+	if ((match == -1) && (dataSource.GetDM() != Durchmusterung::Empty))
+	{
+		// note that this matches only if there are no components, or the
+		// component code matches
+		// TODO:...
+		for (int i = 0; i < m_components.size(); ++i)
+		{
+			if (dataSource.GetDM()
+				== m_components[i].GetDM())
 			{
 				match = i;
 				break;

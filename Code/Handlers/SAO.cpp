@@ -31,6 +31,13 @@ void ProcessSAOLine(const std::string& line)
 		star.SetHD(hd);
 	}
 
+	// 105-117 DM
+	if (line[104] != ' ')
+	{
+		const Durchmusterung dm = Durchmusterung::FromStringWithComponent(line.substr(104, 10));
+		star.SetDM(dm);
+	}
+
 	// 85-87 spectral type
 	star.SetSpectralClass(SpectralClass::FromString(line.substr(84, 3)));
 

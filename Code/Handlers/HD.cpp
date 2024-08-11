@@ -19,16 +19,21 @@ void ProcessHDLine(const std::string& line)
 	StarSystem star(StarCatalog::HENRY_DRAPER_CATALOG, index);
 
 	// Durchmusterung 7-18
-	const std::string dm = line.substr(6, 12);
+	static std::string dm(12, ' ');
+	dm = line.substr(6, 12);
 	if (dm[9] != ' ')
 	{
-		star.SetDM(Durchmusterung::FromHDString(dm));
+		star.SetDM(Durchmusterung::FromStringWithComponent(dm));
 	}
 
 	// 19-20
-	const int raHours = std::stoi(line.substr(18, 2));
+	static std::string len2String(2, ' ');
+	len2String = line.substr(18, 2);
+	const int raHours = std::stoi(len2String);
 	// 21-23
-	const int raDeciminutes = std::stoi(line.substr(20, 3));
+	static std::string len3String(3, ' ');
+	len3String = line.substr(20, 3);
+	const int raDeciminutes = std::stoi(len3String);
 	const int raMinutes = raDeciminutes / 10;
 	const double raSeconds = .1 * (raDeciminutes % 10);
 	star.SetRA(raHours, raMinutes, raSeconds);
@@ -36,20 +41,25 @@ void ProcessHDLine(const std::string& line)
 	// 24
 	const bool decNegative = line[23] == '-';
 	// 25-26
-	const int decDegrees = std::stoi(line.substr(24, 2));
+	len2String = line.substr(24, 2);
+	const int decDegrees = std::stoi(len2String);
 	// 27-28
-	const int decMinutes = std::stoi(line.substr(26, 2));
+	len2String = line.substr(26, 2);
+	const int decMinutes = std::stoi(len2String);
 	star.SetDeclination(decNegative ? -decDegrees : decDegrees, decMinutes, 0);
 
 	// 30-34 Visual magnitude
+	static std::string len5String(3, ' ');
 	if (line[31] != ' ')
 	{
-		const float vmag = std::stof(line.substr(29, 5));
+		len5String = line.substr(29, 5);
+		const float vmag = std::stof(len5String);
 		star.SetVisualMagnitude(vmag);
 	}
 	else if (line[38] != ' ') // 30-34 Visual magnitude
 	{
-		const float vmag = std::stof(line.substr(36, 5));
+		len5String = line.substr(36, 5);
+		const float vmag = std::stof(len5String);
 		star.SetVisualMagnitude(vmag);
 	}
 
@@ -57,7 +67,8 @@ void ProcessHDLine(const std::string& line)
 	// spectral type
 	if ((line.size() > 43) && (line[42] != ' '))
 	{
-		star.SetSpectralClass(SpectralClass::FromString(line.substr(42,3)));
+		len3String = line.substr(42, 3);
+		star.SetSpectralClass(SpectralClass::FromString(len3String));
 	}
 
 	Catalog::AccumulateStar(star);

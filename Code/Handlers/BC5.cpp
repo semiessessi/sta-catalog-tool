@@ -3,7 +3,7 @@
 #include "Star/Star.h"
 
 #include <cstdlib>
-
+#include <unordered_set>
 
 // data source: http://tdc-www.harvard.edu/catalogs/bsc5.html
 
@@ -27,7 +27,7 @@ void ProcessBC5Line(const std::string& line)
 
 	// name 5-14
 	const std::string name = line.substr(4, 10);
-	star.SetNameString(name);
+	//star.SetNameString(name);
 
 	const int flamsteed = (name[2] != ' ') ? std::stoi(name.substr(0, 3)) : 0;
 	star.SetFlamsteed(flamsteed);
@@ -39,7 +39,7 @@ void ProcessBC5Line(const std::string& line)
 
 	// Durchmusterung 15-25
 	const std::string dm = line.substr(14, 11);
-	star.SetDM(Durchmusterung::FromHipString(dm));
+	star.SetDM(Durchmusterung::FromComponentFreeString(dm));
 
 	// HD 26-31
 	if (line[30] != ' ')
@@ -176,6 +176,7 @@ int ReadBC5Data(const std::string& path)
 		{
 			int noMagnitudeCount = 0;
 			int alphaCount = 0;
+			std::unordered_set<Constellation> constelllationSet;
 			Catalog::ForEachStar([&](SCT::StarSystem& starSystem)
 				{
 					if (starSystem.GetHR() != 0)
@@ -192,6 +193,8 @@ int ReadBC5Data(const std::string& path)
 								++alphaCount;
 							}
 						}
+
+						constelllationSet.insert(starSystem.GetConstellation());
 					}
 				});
 
@@ -202,7 +205,17 @@ int ReadBC5Data(const std::string& path)
 			}
 			else
 			{
-				puts("All stars from HR catalog seem to have valid visual magnitudes");
+				puts("All stars from HR catalog seem to have valid visual magnitudes.");
+			}
+
+			if (constelllationSet.size() != 89)
+			{
+				printf("ERROR: %d constellations found! Expected 88.\n", (int)(constelllationSet.size() - 1));
+				return 1;
+			}
+			else
+			{
+				puts("Found a star for each constellation, all 88.");
 			}
 
 			if (alphaCount != 84)
@@ -212,7 +225,7 @@ int ReadBC5Data(const std::string& path)
 			}
 			else
 			{
-				puts("All alpha stars accounted for");
+				puts("All alpha stars accounted for.");
 			}
 		}
 	}

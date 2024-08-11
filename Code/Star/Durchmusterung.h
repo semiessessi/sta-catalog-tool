@@ -38,22 +38,26 @@ public:
 		return GetData() != other.GetData();
 	}
 
-	static Durchmusterung FromHDString(const std::string& string);
-	static Durchmusterung FromHipString(const std::string& string);
+	static Durchmusterung FromStringWithComponent(const std::string& string);
+	static Durchmusterung FromComponentFreeString(const std::string& string);
 
-	unsigned int GetData() const { return *reinterpret_cast<const unsigned int*>(this); }
+	unsigned int GetData() const { return m_data; }
 	unsigned int GetDataNoComponent() const;
 	Durchmusterung GetComponentless() const;
 
 private:
 
-	struct
+	union
 	{
-		unsigned int m_number : 16;
-		unsigned int m_zone : 7;
-		unsigned int m_sign : 1;
-		unsigned int m_component : 6;
-		Catalog m_catalog : 2;
+		struct
+		{
+			unsigned int m_number : 16;
+			unsigned int m_zone : 7;
+			unsigned int m_sign : 1;
+			unsigned int m_component : 6;
+			Catalog m_catalog : 2;
+		};
+		unsigned int m_data;
 	};
 };
 

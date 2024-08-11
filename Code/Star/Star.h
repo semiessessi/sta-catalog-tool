@@ -146,7 +146,7 @@ public:
 	void SetDeclination(const Declination& dec) { m_Dec = dec; }
 	void SetDeclination(const int degrees, const int minutes = 0, const double seconds = 0.0);
 
-	void SetNameString(const std::string& name) { m_crappyNameString = name; }
+	//void SetNameString(const std::string& name) { m_crappyNameString = name; }
 
 	const RightAscension& GetRA() const { return m_RA; }
 	const Declination& GetDec() const { return m_Dec; }
@@ -187,11 +187,11 @@ public:
 
 private:
 
-	std::string m_crappyNameString;
+	//std::string m_crappyNameString;
+	std::vector<ComponentStar> m_components;
 	RightAscension m_RA;
 	Declination m_Dec;
 	Constellation m_constellation = Unknown;
-	std::vector<ComponentStar> m_components;
 };
 
 }

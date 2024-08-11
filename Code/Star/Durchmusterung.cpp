@@ -24,7 +24,7 @@ Durchmusterung::Durchmusterung(const Durchmusterung& other)
 {
 }
 
-Durchmusterung Durchmusterung::FromHDString(const std::string& string)
+Durchmusterung Durchmusterung::FromStringWithComponent(const std::string& string)
 {
 	Durchmusterung returnValue;
 
@@ -61,7 +61,7 @@ Durchmusterung Durchmusterung::FromHDString(const std::string& string)
 	return returnValue;
 }
 
-Durchmusterung Durchmusterung::FromHipString(const std::string& string)
+Durchmusterung Durchmusterung::FromComponentFreeString(const std::string& string)
 {
 	Durchmusterung returnValue;
 
@@ -85,7 +85,14 @@ Durchmusterung Durchmusterung::FromHipString(const std::string& string)
 	returnValue.m_sign = string[2] == '-';
 
 	returnValue.m_zone = std::stoi(string.substr(3, 2));
-	returnValue.m_number = std::stoi(string.substr(5, 5));
+	if (string.size() == 10)
+	{
+		returnValue.m_number = std::stoi(string.substr(5, 5));
+	}
+	else
+	{
+		returnValue.m_number = std::stoi(string.substr(5, 6));
+	}
 
 	return returnValue;
 }
@@ -93,7 +100,7 @@ Durchmusterung Durchmusterung::FromHipString(const std::string& string)
 unsigned int Durchmusterung::GetDataNoComponent() const
 {
 	Durchmusterung copy(GetComponentless());
-	return *reinterpret_cast<const unsigned int*>(&copy);
+	return copy.m_data;
 }
 
 Durchmusterung Durchmusterung::GetComponentless() const

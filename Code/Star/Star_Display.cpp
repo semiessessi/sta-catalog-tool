@@ -76,6 +76,7 @@ std::string ComponentStar::ToDisplayTableRow(const double ra, const double dec, 
 	}
 	returnValue += decString;
 
+	returnValue += "  ";
 	std::string name = GetDisplayName(constellation);
 	returnValue += name;
 	return returnValue;
@@ -135,7 +136,7 @@ std::string StarSystem::ToDisplayTableRows() const
 	std::string returnValue;
 	for (size_t i = 0; i < m_components.size(); ++i)
 	{
-		returnValue += m_components[0].ToDisplayTableRow(m_RA.ToDegrees(), m_Dec.ToDegrees(), m_constellation);
+		returnValue += m_components[i].ToDisplayTableRow(m_RA.ToDegrees(), m_Dec.ToDegrees(), m_constellation);
 		returnValue += "\n";
 	}
 	return returnValue;

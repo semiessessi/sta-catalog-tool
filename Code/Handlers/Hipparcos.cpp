@@ -30,8 +30,33 @@ void ProcessHipLine(const std::string& line)
 	//
 	//star.SetFlamsteed(flamsteed);
 
-	// Durchmusterung 15-25
-	//const std::string dm = line.substr(14, 11);
+	// 398-407 Durchmusterung
+	std::string dm = line.substr(397, 10);
+	if (dm[0] == 'B')
+	{
+		dm.insert(dm.begin() + 1, 'D');
+		star.SetDM(Durchmusterung::FromComponentFreeString(dm));
+	}
+	else
+	{
+		// 409-418 CD
+		dm = line.substr(408, 10);
+		if (dm[0] == 'C')
+		{
+			dm.insert(dm.begin() + 1, 'D');
+			star.SetDM(Durchmusterung::FromComponentFreeString(dm));
+		}
+		else
+		{
+			// 420-429 CP
+			dm = line.substr(419, 10);
+			if (dm[0] == 'P')
+			{
+				dm.insert(dm.begin(), 'C');
+				star.SetDM(Durchmusterung::FromComponentFreeString(dm));
+			}
+		}
+	}
 
 	// HD 391-396
 	if (line[395] != ' ')

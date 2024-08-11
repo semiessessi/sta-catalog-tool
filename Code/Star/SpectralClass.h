@@ -9,10 +9,10 @@ namespace SCT
 {
 
 #pragma pack(push, 1)
-
+__declspec(align(1))
 class SpectralClass
 {
-	enum Type : unsigned int
+	enum Type : unsigned char
 	{
 		Unknown,
 		O,
@@ -44,7 +44,7 @@ private:
 	struct
 	{
 		Type m_type : 4;
-		unsigned int m_index : 4;
+		unsigned char m_index : 4;
 	};
 };
 
